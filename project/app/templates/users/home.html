@@ -14,7 +14,7 @@
         </div>
     </nav>
 
-    <form action="{% url_for('users') %}" method="post">
+    <form action="{% url 'users' %}" method="post">
         {% csrf_token %}
         <div style="text-align: center;" class="container">
             <h1>Cadastro Usuários</h1>

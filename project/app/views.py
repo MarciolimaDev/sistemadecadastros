@@ -6,16 +6,18 @@ def home(request):
     return render(request, 'users/home.html')
 
 def users(request):
-    #salva os dados da tela e enviar para o banco de dados
-    usuario = User()
-    new_user.nome = request.POST.get('nome')
-    new_user.idade = request.POST.get('idade')
-    new_user.save()
-
-    #exibir todos os usuarios ja cadastrados em uma nova pagina
-    usuarios = {
-        'usuarios': User.objects.all()
-    }
-
-    #retornar o dados dos usuarios para a pagina de listagem de usuarios
-    return render(request, 'users/listUrsers.html', usuarios)
+    if request.method == 'POST':
+        # Lógica para processar dados POST (se necessário)
+        new_user = User()
+        new_user.nome = request.POST.get('nome')
+        new_user.idade = request.POST.get('idade')
+        new_user.save()
+        
+        # Restante da lógica de processamento
+    else:
+        # Lógica para solicitações GET
+        # Pode ser apenas renderizar o template sem processar dados adicionais
+        usuarios = {
+            'usuarios': User.objects.all()
+        }
+        return render(request, 'users/listUrsers.html', usuarios)
