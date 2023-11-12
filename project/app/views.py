@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import User
+from django.http import JsonResponse
 
 # Create your views here.
 def home(request):
@@ -13,7 +14,8 @@ def users(request):
         new_user.idade = request.POST.get('idade')
         new_user.save()
         
-        # Restante da lógica de processamento
+        # Responda com sucesso para requisições AJAX
+        return JsonResponse({'status': 'success'})
     else:
         # Lógica para solicitações GET
         # Pode ser apenas renderizar o template sem processar dados adicionais
